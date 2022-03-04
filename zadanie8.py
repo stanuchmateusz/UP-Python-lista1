@@ -1,0 +1,101 @@
+class Pet:
+    def __init__(self, name) -> None:
+        self.hunger = 0
+        self.tiredness = 0
+        self.name = name
+
+    def _passage_of_time(self) -> None:
+        self.hunger += 1
+        self.tiredness += 1
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, nazwa):
+        if not nazwa or len(nazwa) < 3:
+            raise ValueError("Podano nieprawidłową nazwę")
+        self._name = nazwa
+
+    @property
+    def mood(self):
+        return self._mood
+
+    @mood.setter
+    def mood(self, mood):
+        if mood < 0:
+            self._mood = 1
+        elif mood > 4:
+            self._mood = 4
+        else:
+            self._mood = mood
+
+    def talk(self):
+        s = self.hunger + self.tiredness
+        if s < 5:
+            self.mood = 1
+        elif s < 10:
+            self.mood = 2
+        elif s < 15:
+            self.mood = 3
+        else:
+            self.mood = 4
+        self._passage_of_time()
+
+        moods = ["szczśliwy", "zadowolony", "podenerwowany", "wściekły"]
+        print(f"{self.name} jest {moods[self._mood]}")
+
+    def eat(self, food=4):
+        self.hunger -= food
+        if self.hunger < 0:
+            self.hunger = 0
+        self._passage_of_time()
+
+    def play(self, fun=4):
+        self.tiredness -= fun
+        if self.tiredness < 0:
+            self.tiredness = 0
+        self._passage_of_time()
+
+    def __str__(self):
+        return f"{self.name} | poziom najedzenia {self.hunger} | poziom znudzenia {self.tiredness}"
+
+
+if __name__ == "__main__":
+
+    p = Pet(input("Wpisz nazwę swojego zwierzaka: "))
+    while True:
+        print("""
+                      __
+            \ ______/ V`-,
+             }        /~~
+            /_)^ --,r'
+           |b      |b"`
+           
+        1. Porozmawiaj
+        2. Nakarm
+        3. Baw się
+        4. Wyjdź
+        """)
+        choice = input("Wybierz opcję: ")
+        if choice == "1":
+            p.talk()
+        elif choice == "2":
+            karma = input("Ile jedzenia chcesz doć pupilowi? (opcjonalne) ")
+            if karma.isdigit():
+                p.eat(int(karma))
+            else:
+                p.eat()
+        elif choice == "3":
+            czas = input("Ile czasu chcesz bawić się z pupilem? (opcjonalne) ")
+            if czas.isdigit():
+                p.play(int(czas))
+            else:
+                p.play()
+        elif choice == "4":
+            break
+        elif choice == "xy":
+            print(p)
+        else:
+            print("Nie ma takiej opcji")
