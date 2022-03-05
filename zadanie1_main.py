@@ -38,7 +38,7 @@ def saper():
 
     while True:
         try:
-            x, y = int(input("Podaj współrzędną x ")), int(
+            y, x = int(input("Podaj współrzędną x ")), int(
                 input("Podaj współrzędną y "))
         except ValueError:
             print("Niepoprawna wartość")

@@ -90,24 +90,30 @@ class minesweeper:
             raise ValueError("Nie ustawiono planszy")
 
         # góra
-        print(chr(9556), end="")
+        print("")
+        print(chr(9553), end="")
+        for i in range(self.x):
+            print(i, end="|")
+        print(chr(9553))  # ╔
+
+        print(chr(9567), end="")
         for _ in range(len(board[0])*2):
-            print(chr(9552), end="")
-        print(chr(9559))
+            print(chr(9472), end="")
+        print(chr(9570))
 
         # treść
         for i in range(len(board)):
             print(chr(9553), end="")
             for j in board[i]:
                 if j == 9:
-                    print("\33[31m*\033[0m", end=chr(9589))
+                    print("\33[31m*\033[0m", end="|")
                 elif j == 0:
-                    print("O", end=chr(9589))
+                    print("O", end="|")
                 elif j == 10:
-                    print(" ", end=chr(9589))
+                    print(" ", end="|")
                 else:
-                    print(f'\33[{40+j}m{j}\033[0m', end=chr(9589))
-            print(chr(9553))
+                    print(f'\33[{40+j}m{j}\033[0m', end="|")
+            print(chr(9553), i)
 
         # góra
         print(chr(9562), end="")
