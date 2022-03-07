@@ -1,4 +1,4 @@
-# niegotowe
+# brak implementacji ale klasa wygląda poprawnie
 
 
 class RocketEngine:
