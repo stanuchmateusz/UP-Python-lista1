@@ -1,8 +1,8 @@
 class Pet:
     def __init__(self, name) -> None:
+        self.name = name
         self.hunger = 0
         self.tiredness = 0
-        self.name = name
 
     def _passage_of_time(self) -> None:
         self.hunger += 1
@@ -14,7 +14,7 @@ class Pet:
 
     @name.setter
     def name(self, nazwa):
-        if not nazwa or len(nazwa) < 3 or not nazwa.isalpha():
+        if not nazwa or not nazwa.isalpha() or len(nazwa) < 3:
             raise ValueError("Podano nieprawidłową nazwę")
         self._name = nazwa
 
