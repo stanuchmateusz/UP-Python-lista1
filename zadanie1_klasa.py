@@ -105,13 +105,13 @@ class minesweeper:
             print(chr(9553), end="")
             for j in board[i]:
                 if j == 9:
-                    print("\33[31m*\033[0m", end="|")
+                    print("\33[31m*\033[0m", end=".")
                 elif j == 0:
-                    print("O", end="|")
+                    print("O", end=".")
                 elif j == 10:
-                    print(" ", end="|")
+                    print(" ", end=".")
                 else:
-                    print(f'\33[{40+j}m{j}\033[0m', end="|")
+                    print(f'\33[{40+j}m{j}\033[0m', end=".")
             print(chr(9553), i)
 
         # góra
